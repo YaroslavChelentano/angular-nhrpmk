@@ -1,0 +1,12 @@
+<form [formGroup]="bookFg">
+	<div formArrayName="arrayForm">
+		<div *ngFor="let item of bookFg.get('arrayForm').controls;let i=index" [formGroupName]="i">
+			<input formControlName="name" (input)="checkArray(i)">{{item.get('name').invalid?"*":""}}
+    </div>
+	</div>
+</form>
+<div *ngIf="bookFg.get('arrayForm').invalid">Form Array invalid</div>
+<div *ngIf="bookFg.invalid">Form invalid</div>
+<pre>
+  {{bookFg.value|json}}
+</pre>
